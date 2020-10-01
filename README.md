@@ -31,8 +31,8 @@ People in the Black Community are faced with harsher downstream effects (charged
 
 With the help of Data Science techniques, the below can be arrived :
 
-(1) Predict the sentence length  based on a wide range of factors including race, 
-(2) identify scenarios where the length of the sentence would have been dramatically different if the convicted person's race was different, 
+(1) Predict the sentence length  based on a wide range of factors including race,
+(2) identify scenarios where the length of the sentence would have been dramatically different if the convicted person's race was different,
 (3) use the same wide range of factors, excluding race, to identify factors and scenarios that predict a dramatically difference in sentence length depending on race.
 
 ### The idea
@@ -54,7 +54,7 @@ Predict how likely a charge's sentencing will be very different if the convicted
 1) Predict the sentence length  based on a wide range of factors including race,   
 2) identify scenarios where the length of the sentence would have been dramatically different if the convicted person's race was different,   
 3) use the same wide range of factors, excluding race, to identify factors and scenarios that predict a dramatically difference in sentence length depending on race.  
-  
+
 **Limitations**:   
 Some factors that might be results of racial bias or might capture information about decisions made with racial bias are included in the model that identifies racial discrepancies in sentencing. Including these factors likely decreases the scale of the racial bias we identify in a given case because some information about racial bias is being encoded in other non-race variables (like the number of charges levied for example). A potential way to address this maybe a sensitivity test in which we refit the model excluding each non-race variable one at a time and asses the the scale of identified racial discrepancy  (and the change in model accuracy). This would allow you to pinpoint which variables are encoding the most information that could be attributed to race.
 
@@ -116,7 +116,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## License
 
-This project is licensed under the Apache 2 License - see the [LICENSE](LICENSE) file for details
+Contributions are subject to the Developer Certificate of Origin, Version 1.1 (DCO) and the Apache Software License, Version 2.
 
 ## Acknowledgments
 
