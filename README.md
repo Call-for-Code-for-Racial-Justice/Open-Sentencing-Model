@@ -1,9 +1,13 @@
+## Embrace 2020  
+A project for the 2020 Call for Code Challenge seeking technology solutions for racial injustice.
+
+![embraceLogo](images/Embrace-Logo.png)
+
 <p align="center">
     <a href="https://cloud.ibm.com">
         <img src="https://my1.digitalexperience.ibm.com/8304c341-f896-4e04-add0-0a9ae02473ba/dxdam/2d/2d559197-6763-4e47-a2cb-8f54c449ff26/ibm-cloud.svg" height="100" alt="IBM Cloud">
     </a>
 </p>
-
 
 <p align="center">
     <a href="https://cloud.ibm.com">
@@ -12,6 +16,31 @@
     <img src="https://img.shields.io/badge/platform-python-lightgrey.svg?style=flat" alt="platform">
     <img src="https://img.shields.io/badge/license-Apache2-blue.svg?style=flat" alt="Apache 2">
 </p>
+
+### What's the problem?
+Black defendants face harsher sentences than people of other races for similar offenses. (charged at higher rates, assigned more significant charges, convicted at higher rates, given longer sentences, and denied parole more often)
+
+### How can technology help?
+A model the estimates likely the sentencing discrepancy attributable to race for a defendant can allow criminal legal system actors to intervene before an unequal sentence is handed down. The model can also be interpreted to identify individual and combined factors that lead most often to sentencing discrepancies.
+
+### Roadmap and Architecture
+This project will ultimately be presented as a component of a group of projects that will generate other predictions, capture new data, and generate reports.  The architecture of the complete system is shown below.  
+
+![Architecture Digaram](images/architecture.png)
+
+#### Machine Learning Algorithm
+
+**Goal**:   
+Predict how likely a charge's sentencing will be very different if the convicted person was of a different race.
+
+**Algorithm training**:  
+1) Predict the sentence length  based on a wide range of factors including race,   
+2) identify scenarios where the length of the sentence would have been dramatically different if the convicted person's race was different,   
+3) use the same wide range of factors, excluding race, to identify factors and scenarios that predict a dramatically difference in sentence length depending on race.  
+  
+**Limitations**:   
+Some factors that might be results of racial bias or might capture information about decisions made with racial bias are included in the model that identifies racial discrepancies in sentencing. Including these factors likely decreases the scale of the racial bias we identify in a given case because some information about racial bias is being encoded in other non-race variables (like the number of charges levied for example). A potential way to address this maybe a sensitivity test in which we refit the model excluding each non-race variable one at a time and asses the the scale of identified racial discrepancy  (and the change in model accuracy). This would allow you to pinpoint which variables are encoding the most information that could be attributed to race.
+
 
 
 # Create and deploy a Python Flask application
@@ -120,6 +149,51 @@ You can build and debug your app locally with:
 ibmcloud dev build --debug
 ibmcloud dev debug
 ```
+
+### Running the Examples and Calling the API?
+Please find the notebook used to build the model [here](notebooks/Explore and Train - reader friendly.ipynb).  Another notebook outlining how to make predictions with a pretrained model is [here](notebooks/calling_api_and_comparing_results.ipynb)
+
+If the service is cloud deployed be sure to point to the IP and port associated witht the deployment.  Examples here are provided for deployment on `localhost:3000`.
+
+
+You can then use [Postman app](https://www.postman.com/downloads/) to send json formatted POST HTTP requests to the model at the URL `http://127.0.0.1:3000/predict`
+Here is an example JSON data you can use to test the model.
+```
+{
+	"PRIMARY_CHARGE_FLAG":false,
+	"DISPOSITION_CHARGED_OFFENSE_TITLE":"[POSSESSION OF CONTROLLED SUBSTANCE WITH INTENT TO DELIVER\/ DELIVERY OF A CONTROLLED SUBSTANCE]",
+	"CHARGE_COUNT":2,"DISPOSITION_CHARGED_CLASS":"2",
+	"CHARGE_DISPOSITION":"Plea Of Guilty",
+	"SENTENCE_JUDGE":"Maura  Slattery Boyle",
+	"SENTENCE_PHASE":"Original Sentencing","SENTENCE_TYPE":"Prison",
+	"COMMITMENT_TERM":3.0,"COMMITMENT_UNIT":"Year(s)", "LENGTH_OF_CASE_in_Days":336.0,
+	"AGE_AT_INCIDENT":52.0,"RACE":"Black","GENDER":"Female","INCIDENT_CITY":"Chicago",
+	"LAW_ENFORCEMENT_AGENCY":"CHICAGO PD",
+	"LAW_ENFORCEMENT_UNIT":"District 25 - Grand Central",
+	"UPDATED_OFFENSE_CATEGORY":"Narcotics"
+}
+```
+#### From the Command Line
+Run the following command line curl command
+
+```asciidoc
+curl -X POST -H "Content-Type: application/json" -d '{"PRIMARY_CHARGE_FLAG":false,"DISPOSITION_CHARGED_OFFENSE_TITLE":"[POSSESSION OF CONTROLLED SUBSTANCE WITH INTENT TO DELIVER\/ DELIVERY OF A CONTROLLED SUBSTANCE]","CHARGE_COUNT":2,"DISPOSITION_CHARGED_CLASS":"2","CHARGE_DISPOSITION":"Plea Of Guilty","SENTENCE_JUDGE":"Maura  Slattery Boyle","SENTENCE_PHASE":"Original Sentencing","SENTENCE_TYPE":"Prison","COMMITMENT_TERM":3.0,"COMMITMENT_UNIT":"Year(s)","LENGTH_OF_CASE_in_Days":336.0,"AGE_AT_INCIDENT":52.0,"RACE":"Black","GENDER":"Female","INCIDENT_CITY":"Chicago","LAW_ENFORCEMENT_AGENCY":"CHICAGO PD","LAW_ENFORCEMENT_UNIT":"District 25 - Grand Central","UPDATED_OFFENSE_CATEGORY":"Narcotics"}' localhost:3000/predict
+```
+
+You should get the following result
+
+```asciidoc
+{
+  "model_name": "sentence_pipe_mae1.555_2020-10-10_02h46m24s",
+  "sentencing_discrepancy": 0.211,
+  "severity": 0.555
+}
+```
+The `model_name` is the file name (with `.pkl` extension) of the model file used to make the prediction.  Discrepancy and Severity are discussed in the notebook (Add notebook link here).  See also [Calling API and Comparing Results](notebooks/calling_api_and_comparing_results.ipynb), for details on how the data is generated.
+
+
+
+
 
 ## Next steps
 * Learn more about the services and capabilities of [IBM Cloud](https://cloud.ibm.com).
