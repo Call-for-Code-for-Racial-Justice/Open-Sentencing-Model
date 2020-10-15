@@ -3,18 +3,16 @@ swagger: '2.0'
 info:
   version: "0.0.1"
   title: Open Sentencing Model REST API
-
 consumes:
   - text/plain
-
+  - application/json
 produces:
   - application/json
-
 paths:
   /health:
     get:
       operationId: get
-      description: Get health status of  
+      description: Get health status of
       responses:
         200:
           description: "Health check response"
@@ -22,7 +20,68 @@ paths:
             $ref: "#/definitions/healthResponse"
           examples:
             application/json: { "status": "UP"}
-
+  /predict:
+    post:
+      operationId: predict
+      description: Get health status of
+      requestBody:
+        required: true
+        description: A JSON key-value map listing the attributes of a single charge
+        # I don't feel like specifying the whole  schema and it is already
+        # validated in the backend method
+        #content:
+          #application/json:
+            #schema:
+              #properties:
+                #UPDATED_OFFENSE_DISPOSITION:
+                  #type: string
+      responses:
+        200:
+          description: >
+            Returns the estimated racial discrepancy for the recieved
+            charged defendant's profile as well as a measure of relative
+            severity of estimated racial discrepancy and the model used
+            to make the estimate.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sentencing_discrepency:
+                    type: number
+                    description: >
+                    Estimated # of additional years to which the
+                    observed case profile would be sentenced over the
+                    counterfactual (race switched) case profile. A positive
+                    discrepancy means that the actual race would recieve a
+                    harsher sentence than the counterfactual race.
+                  severity:
+                    type: number
+                    description: >
+                    The percent of historical discrepancies as a fraction
+                    of total sentence lengths that are less extreme than the
+                    given estimated discrepancy. Response should be between
+                    0 and 100.
+                  model_name:
+                    type: string
+                    description: The name of the pickle file model used to make
+                    the discrepancy estimate (without the file ext).
+              examples:
+                application/json: {
+                                      "model_name": "sentence_pipe_mae1.555_2020-10-10_02h46m24s",
+                                      "sentencing_discrepency": 0.283,
+                                      "severity": 0.252
+                                  }
+        404:
+          description: Invalid data payload
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Descriptive message about why the data is invalid.
 definitions:
   healthResponse:
     type: "object"
