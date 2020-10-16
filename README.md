@@ -1,7 +1,7 @@
 ## Embrace 2020  
 A project for the 2020 Call for Code Challenge seeking technology solutions for racial injustice.
 
-![embraceLogo](images/Embrace-Logo.png)
+![embraceLogo](images/launch-logo.png)
 
 <p align="center">
     <a href="https://cloud.ibm.com">
