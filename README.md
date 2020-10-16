@@ -1,4 +1,4 @@
-## Embrace 2020  
+## Call for Code for Racial Justice
 A project for the 2020 Call for Code Challenge seeking technology solutions for racial injustice.
 
 ![embraceLogo](images/launch-logo.png)
