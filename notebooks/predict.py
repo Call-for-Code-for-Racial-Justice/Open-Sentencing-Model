@@ -2,7 +2,7 @@
 # -*- coding: utf8 -*-
 import pandas as pd
 import numpy as np
-from flask import Flask, jsonify, request
+#from flask import Flask, jsonify, request
 from schema import Schema, And, Or, SchemaError
 
 import pickle
