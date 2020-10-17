@@ -23,6 +23,9 @@ Black defendants face harsher sentences than people of other races for similar o
 ### How can technology help?
 A model the estimates likely the sentencing discrepancy attributable to race for a defendant can allow criminal legal system actors to intervene before an unequal sentence is handed down. The model can also be interpreted to identify individual and combined factors that lead most often to sentencing discrepancies.
 
+### Data Set
+Cook County State county data set used in Open Sentencing.
+
 ### Roadmap and Architecture
 This project will ultimately be presented as a component of a group of projects that will generate other predictions, capture new data, and generate reports.  The architecture of the complete system is shown below.  
 
