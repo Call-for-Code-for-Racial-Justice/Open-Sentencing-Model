@@ -27,14 +27,66 @@ paths:
       requestBody:
         required: true
         description: A JSON key-value map listing the attributes of a single charge
-        # I don't feel like specifying the whole  schema and it is already
-        # validated in the backend method
-        #content:
-          #application/json:
-            #schema:
-              #properties:
-                #UPDATED_OFFENSE_DISPOSITION:
-                  #type: string
+        content:
+          application/json:
+            schema:
+              #type: object # this isn't necessary?
+              properties:
+                UPDATED_OFFENSE_CATEGORY:
+                  type: string
+                  description:
+                CHARGE_COUNT:
+                  type: int
+                  description:
+                CHARGE_DISPOSITION:
+                  type: string
+                  description:
+                PRIMARY_CHARGE_FLAG:
+                  type: boolean
+                  description:
+                DISPOSITION_CHARGED_OFFENSE_TITLE:
+                  type: string
+                  description:
+                DISPOSITION_CHARGED_CLASS:
+                  type: string
+                  description: 
+                SENTENCE_JUDGE:
+                  type: string
+                  description:
+                SENTENCE_PHASE:
+                  type: string
+                  description: 
+                COMMITMENT_TERM:
+                  type: int
+                  description: 
+                COMMITMENT_UNIT:
+                  type: string
+                  description:   
+                LENGTH_OF_CASE_in_Days:
+                  type: int
+                  description:  
+                AGE_AT_INCIDENT:
+                  type: int
+                  description:  
+                RACE:
+                  type: string
+                  description:
+                GENDER:
+                  type: string
+                  description:  
+                INCIDENT_CITY:
+                  type: string
+                  description:
+                LAW_ENFORCEMENT_AGENCY:
+                  type: string
+                  description:
+                LAW_ENFORCEMENT_UNIT:
+                  type: string
+                  description:
+                SENTENCE_TYPE:
+                  type: string
+                  description:
+
       responses:
         200:
           description: >
