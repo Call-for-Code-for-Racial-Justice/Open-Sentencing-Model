@@ -96,7 +96,7 @@ def predict():
     percentile = discrepancy_percentile(percent_discrepancy, TEST_DISCREPANCIES_PATH)
 
     return jsonify(
-        sentencing_discrepency=round(float(discrepancy[0]), 3),
+        sentencing_discrepancy=round(float(discrepancy[0]), 3),
         severity=round(float(percentile[0]), 3),
         model_name=os.path.splitext(os.path.split(MODEL_PATH)[-1])[0]
     )
