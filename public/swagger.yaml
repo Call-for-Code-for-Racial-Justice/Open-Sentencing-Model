@@ -27,7 +27,6 @@ paths:
       requestBody:
         required: true
         description: A JSON key-value map listing the attributes of a single charge
-        # I don't feel like specifying the whole  schema and it is already
         # validated in the backend method
         #content:
           #application/json:
