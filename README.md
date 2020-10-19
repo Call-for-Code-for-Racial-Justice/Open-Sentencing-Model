@@ -18,32 +18,27 @@ A project for the 2020 Call for Code Challenge seeking technology solutions for 
 </p>
 
 ### What's the problem?
-Black defendants face harsher sentences than people of other races for similar offenses. (charged at higher rates, assigned more significant charges, convicted at higher rates, given longer sentences, and denied parole more often)
+Black defendants face harsher sentences than people of other races for similar offenses (e.g. harged at higher rates, assigned more significant charges, convicted at higher rates, given longer sentences, and denied parole more often).
 
 ### How can technology help?
-A model the estimates likely the sentencing discrepancy attributable to race for a defendant can allow criminal legal system actors to intervene before an unequal sentence is handed down. The model can also be interpreted to identify individual and combined factors that lead most often to sentencing discrepancies.
+We built a statistical model that estimates the additional years of prison that a non-white defendant will face in a particular case. This tool allows public defenders and other criminal legal system actors to intervene in a particular case before an unequal sentence is handed down. The model also helps public defenders identify factors that lead most often to racial sentencing discrepancies.
 
 ### Data Set
-Cook County State county data set used in Open Sentencing.
+[Cook County Sentencing data set](https://datacatalog.cookcountyil.gov/Courts/Sentencing/tg8v-tm6u/data) used in the Open Sentencing model.
 
 ### Roadmap and Architecture
 This project will ultimately be presented as a component of a group of projects that will generate other predictions, capture new data, and generate reports.  The architecture of the complete system is shown below.  
 
 ![Architecture Digaram](images/architecture.png)
 
-#### Machine Learning Algorithm
+### Machine Learning Algorithm
+   
+1) Build a model to predict prison sentence length based on a range of factors including race and criminal charge.
+2) For a given charge, predict the sentence length. Then switch the race variable from non-White to White or White to Black and make the same prediction.
+3) Calculate the discrepancy between the predicted sentence length with the actual race and the predicted sentence length with the counterfactual race.
+4) Report the size of the estimated discrepancy in sentencing due to race and the relative severity of the discrepancy compared to past examples. 
 
-**Goal**:   
-Predict how likely a charge's sentencing will be very different if the convicted person was of a different race.
-
-**Algorithm training**:  
-1) Predict the sentence length  based on a wide range of factors including race,   
-2) identify scenarios where the length of the sentence would have been dramatically different if the convicted person's race was different,   
-3) use the same wide range of factors, excluding race, to identify factors and scenarios that predict a dramatically difference in sentence length depending on race.  
-  
-**Limitations**:   
-Some factors that might be results of racial bias or might capture information about decisions made with racial bias are included in the model that identifies racial discrepancies in sentencing. Including these factors likely decreases the scale of the racial bias we identify in a given case because some information about racial bias is being encoded in other non-race variables (like the number of charges levied for example). A potential way to address this maybe a sensitivity test in which we refit the model excluding each non-race variable one at a time and asses the the scale of identified racial discrepancy  (and the change in model accuracy). This would allow you to pinpoint which variables are encoding the most information that could be attributed to race.
-
+See the [Notebooks](/notebooks/) folder in this repository for detailed Jupyter notebooks that demostrate how the model was trained and allow you to re-train the model yourself.
 
 
 # Create and deploy a Python Flask application
