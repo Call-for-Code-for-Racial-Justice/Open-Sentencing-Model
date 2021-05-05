@@ -1,16 +1,18 @@
+[![License](https://img.shields.io/badge/License-Apache2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) [![Community](https://img.shields.io/badge/Join-Community-blue.svg)](https://developer.ibm.com/callforcode/racial-justice/get-started/)
+
 ## Call for Code for Racial Justice
 A project for the 2020 Call for Code Challenge seeking technology solutions for racial injustice.
 
 ![embraceLogo](images/launch-logo.png)
 
 <p align="center">
-    <a href="https://cloud.ibm.com">
+    <a href="https://developer.ibm.com/callforcode/racial-justice/get-started/">
         <img src="https://my1.digitalexperience.ibm.com/8304c341-f896-4e04-add0-0a9ae02473ba/dxdam/2d/2d559197-6763-4e47-a2cb-8f54c449ff26/ibm-cloud.svg" height="100" alt="IBM Cloud">
     </a>
 </p>
 
 <p align="center">
-    <a href="https://cloud.ibm.com">
+    <a href="https://developer.ibm.com/callforcode/racial-justice/get-started/">
     <img src="https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg" alt="IBM Cloud">
     </a>
     <img src="https://img.shields.io/badge/platform-python-lightgrey.svg?style=flat" alt="platform">
